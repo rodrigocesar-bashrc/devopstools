@@ -6,9 +6,10 @@ USER="ubuntu"   # change-me
 echo "
 ### DevOps Tools - Install ###
 
-ATENÇÃO: antes de qualquer instalação execute UMA vez: sudo apt update && sudo apt upgrade
+ATENÇÃO! Antes de qualquer instalação, atualize os pacotes por pelo menos UMA vez (Opção 0)!
 - Baseado nas documentações oficiais.
 
+0. Atualizar pacotes
 1. Docker
 2. Docker Compose
 3. Git
@@ -16,10 +17,16 @@ ATENÇÃO: antes de qualquer instalação execute UMA vez: sudo apt update && su
 5. Terraform
 6. AWS CLI
 7. Todas 
-0. Limpando lixo de pacotes
+00. Limpar lixo de pacotes
 
 Digite o software que deseja instalar: "
 read tool
+
+function0(){
+    echo "### Atualizando pacotes... ###"
+    sudo apt update && sudo apt upgrade
+    echo "### Pacotes atualizados! ###"
+}
 
 function1()
 {
@@ -105,7 +112,7 @@ function7()
     echo "### Instalando TODAS as tools ###"
 }
 
-function0()
+function00()
 {
     echo "### Limpando lixo de pacotes ###"
     sudo apt autoremove
@@ -114,6 +121,8 @@ function0()
 }
 
 case $tool in 
+    0)  function0 ;;
+
     1)  function1 ;;
 
     2)  function2 ;;
@@ -126,11 +135,11 @@ case $tool in
 
     6)  function6 ;;
 
-    7)  function1 && function2 && function3 && function4 && function5 
+    7)  function1 && function2 && function3 && function4 && function5 && function6
         echo -e "\nFerramentas instaladas\n"
     ;;
 
-    0)  function0 ;;
+    00)  function00 ;;
 
     *)  echo "Codigo Invalido" ;;
 esac
